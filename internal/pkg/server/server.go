@@ -19,7 +19,7 @@ type server struct {
 	Server
 }
 
-func New() *server {
+func New() Server {
 	return &server{}
 }
 func (s server) Start(port string, handler http.Handler) {

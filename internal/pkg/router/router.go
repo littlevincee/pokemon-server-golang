@@ -1,15 +1,16 @@
 package router
 
 import (
+	"time"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/httplog"
-	"time"
 )
 
 type Handler struct {
-	chi *chi.Mux
+	Chi *chi.Mux
 }
 
 func (h Handler) Setup() {
@@ -18,8 +19,8 @@ func (h Handler) Setup() {
 		Concise: true,
 	})
 
-	h.chi.Use(httplog.RequestLogger(logger))
-	h.chi.Use(
+	h.Chi.Use(httplog.RequestLogger(logger))
+	h.Chi.Use(
 		middleware.RequestID,
 		middleware.RealIP,
 		middleware.Recoverer,
